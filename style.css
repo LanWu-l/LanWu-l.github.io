@@ -286,21 +286,6 @@ h4 { margin: 0 0 5px; font-size: 19px; }
   color: var(--muted);
 }
 
-.footer {
-  border-top: 1px solid var(--line);
-  background: var(--soft);
-  color: var(--muted);
-  font-size: 15px;
-  flex-shrink: 0;
-}
-.footer-inner {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
 @media (max-width: 780px) {
   :root {
     --page-padding: 24px;
@@ -364,7 +349,6 @@ h4 { margin: 0 0 5px; font-size: 19px; }
     min-height: 560px;
   }
   .two-column { columns: 1; }
-  .footer-inner { gap: 10px 18px; }
 }
 
 @media (max-width: 480px) {
