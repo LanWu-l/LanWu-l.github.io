@@ -127,13 +127,6 @@ h4 { margin: 0 0 5px; font-size: 19px; }
 .authors { color: var(--muted); }
 .affiliation, .small-note { margin: 4px 0; }
 
-.button-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin: 28px 0;
-}
-
 .button {
   display: inline-flex;
   border: 1px solid var(--line);
@@ -179,9 +172,12 @@ h4 { margin: 0 0 5px; font-size: 19px; }
 }
 
 .timeline {
-  border-left: 2px solid var(--line);
+  --timeline-line: 2px;
+  --timeline-dot: 10px;
+  --timeline-padding: 24px;
+  border-left: var(--timeline-line) solid var(--line);
   margin-top: 18px;
-  padding-left: 24px;
+  padding-left: var(--timeline-padding);
 }
 
 .timeline article {
@@ -195,7 +191,7 @@ h4 { margin: 0 0 5px; font-size: 19px; }
   border-radius: 50%;
   background: var(--accent);
   position: absolute;
-  left: -28px;
+  left: calc((var(--timeline-padding) * -1) - (var(--timeline-dot) / 2) - (var(--timeline-line) / 2));
   top: 5px;
 }
 .timeline p { margin: 4px 0; }
@@ -217,29 +213,31 @@ h4 { margin: 0 0 5px; font-size: 19px; }
 .page-title {
   width: 100%;
   border-bottom: 1px solid var(--line);
-  margin-bottom: 38px;
-  padding-bottom: 26px;
+  margin-bottom: 0;
+  padding-bottom: 30px;
 }
 .page-title h1 { font-size: 46px; }
-.page-title p { color: var(--muted); margin: 0; font-size: 19px; }
 
 .content-section {
   width: 100%;
   border-bottom: 1px solid var(--line);
-  padding: 16px 0 36px;
+  padding: 30px 0;
 }
 .content-section:last-child { border-bottom: 0; }
 
-.publication {
-  padding: 20px 0;
-  border-top: 1px solid var(--line);
+.publication-list {
+  margin: 0;
+  padding-left: 22px;
 }
-.publication:first-of-type { border-top: 0; }
-.publication h3 { margin: 0 0 8px; font-size: 22px; color: var(--ink); }
-.publication h3 > a:not(.button) {
+.publication-list li {
+  margin: 16px 0;
+  padding-left: 4px;
+}
+.publication-list h3 { margin: 0 0 8px; font-size: 22px; color: var(--ink); }
+.publication-list h3 > a:not(.button) {
   color: var(--paper-link);
 }
-.publication h3 > a:not(.button):hover {
+.publication-list h3 > a:not(.button):hover {
   color: var(--paper-link-hover);
 }
 .publication-title {
@@ -257,7 +255,25 @@ h4 { margin: 0 0 5px; font-size: 19px; }
   font-size: 14px;
   line-height: 1.2;
 }
-.publication p { margin: 4px 0; }
+.publication-list p { margin: 4px 0; }
+
+.cv-section {
+  padding-bottom: 0;
+}
+
+.cv-frame {
+  width: 100%;
+  height: 78vh;
+  min-height: 720px;
+  display: block;
+  border: 1px solid var(--line);
+  background: var(--soft);
+}
+
+.cv-fallback {
+  margin: 20px;
+  color: var(--muted);
+}
 
 .footer {
   border-top: 1px solid var(--line);
@@ -317,22 +333,24 @@ h4 { margin: 0 0 5px; font-size: 19px; }
   h3 { margin-top: 32px; font-size: 21px; }
   h4 { font-size: 17px; }
   .role,
-  .main-copy > p,
-  .page-title p { font-size: 17px; }
-  .button-row { margin: 22px 0; }
+  .main-copy > p { font-size: 17px; }
   .contact-box { margin-top: 22px; font-size: 15px; }
   .page-layout {
     padding-top: 38px;
     padding-bottom: 54px;
   }
   .page-title {
-    margin-bottom: 26px;
-    padding-bottom: 20px;
+    margin-bottom: 0;
+    padding-bottom: 24px;
   }
   .page-title h1 { font-size: 33px; }
-  .content-section { padding: 10px 0 28px; }
-  .publication { padding: 16px 0; }
-  .publication h3 { font-size: 19px; }
+  .content-section { padding: 24px 0; }
+  .publication-list li { margin: 14px 0; }
+  .publication-list h3 { font-size: 19px; }
+  .cv-frame {
+    height: 72vh;
+    min-height: 560px;
+  }
   .two-column { columns: 1; }
   .footer-inner { gap: 10px 18px; }
 }
@@ -353,15 +371,13 @@ h4 { margin: 0 0 5px; font-size: 19px; }
   h2 { font-size: 23px; }
   h3 { font-size: 20px; }
   .role,
-  .main-copy > p,
-  .page-title p { font-size: 16px; }
+  .main-copy > p { font-size: 16px; }
   .pill-list { gap: 8px; }
   .pill-list li {
     padding: 6px 10px;
     font-size: 14px;
   }
-  .timeline { padding-left: 20px; }
-  .timeline article::before { left: -26px; }
+  .timeline { --timeline-padding: 20px; }
   .clean-list { padding-left: 19px; }
   .button {
     padding: 7px 13px;
