@@ -28,6 +28,10 @@ html {
 
 body {
   margin: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
   font-family: "Noto Sans", Helvetica, Arial, sans-serif;
   font-size: 18px;
   line-height: 1.65;
@@ -36,6 +40,10 @@ body {
 }
 
 img { max-width: 100%; }
+
+main {
+  flex: 1 0 auto;
+}
 
 a { color: var(--link); text-decoration: none; }
 a:hover { color: var(--link-hover); text-decoration: underline; }
@@ -46,6 +54,7 @@ a:hover { color: var(--link-hover); text-decoration: underline; }
   position: sticky;
   top: 0;
   z-index: 10;
+  flex-shrink: 0;
 }
 
 .container {
@@ -282,6 +291,7 @@ h4 { margin: 0 0 5px; font-size: 19px; }
   background: var(--soft);
   color: var(--muted);
   font-size: 15px;
+  flex-shrink: 0;
 }
 .footer-inner {
   padding-top: 20px;
